@@ -5,15 +5,25 @@ public class Employee {
     private String name;
     private String address;
     private String type;
-    private String attribute;
+    private int attribute;
     private String number;
+    private double salaryValue;
 
-    public Employee(String name, String address, String type, String attribute, String number) {
+    public double getSalaryValue() {
+        return salaryValue;
+    }
+
+    public void setSalaryValue(double salaryValue) {
+        this.salaryValue = salaryValue;
+    }
+
+    public Employee(String name, String address, String type, int attribute, String number, double salaryValue) {
         this.name = name;
         this.address = address;
         this.type = type;
         this.attribute = attribute;
         this.number = number;
+        this.salaryValue = salaryValue;
     }
     public String getName() {
         return name;
@@ -39,11 +49,11 @@ public class Employee {
         this.type = type;
     }
 
-    public String getAttribute() {
+    public int getAttribute() {
         return attribute;
     }
 
-    public void setAttribute(String attribute) {
+    public void setAttribute(int attribute) {
         this.attribute = attribute;
     }
 
@@ -61,8 +71,9 @@ public class Employee {
                 "name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", type='" + type + '\'' +
-                ", attribute='" + attribute + '\'' +
+                ", attribute=" + attribute +
                 ", number='" + number + '\'' +
+                ", salaryValue=" + salaryValue +
                 '}';
     }
 }

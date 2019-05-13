@@ -17,22 +17,33 @@ public class Menu {
         String name = input.nextLine();
         System.out.print("Address: ");
         String address = input.nextLine();
-        System.out.print("Type: \n (1) hourly; \n (2) salaried; \n (3) commissioned)\n ");
+        System.out.print("Type: \n (1) hourly; \n (2) salaried; \n (3) commissioned\n ");
         String type = input.nextLine();
-        System.out.print("Salary: \n (1) hour salary; \n (2) monthly salary; \n (3) commission\n ");
-        String attribute = input.nextLine();
+//        int typeNum = Integer.parseInt(type);
+        while(!type.equals("1") && !type.equals("2") && !type.equals("3")){
+            System.out.print("Type a valid value: \n (1) hourly; \n (2) salaried; \n (3) commissioned\n");
+//            System.out.print("Type: \n (1) hourly; \n (2) salaried; \n (3) commissioned\n ");
+            type = input.nextLine();
+        }
+        int attribute = Integer.parseInt(type); // (1) hour salary;  (2) monthly salary;  (3) commission
+
+//        System.out.print("Type of Salary: \n (1) hour salary; \n (2) monthly salary; \n (3) commission\n ");
+//        String attribute = input.nextLine();
         String number = String.valueOf(num);
-        return new Employee(name, address, type, attribute, number);
+        System.out.print("Salary Value (R$): ");
+        String salaryString  = input.nextLine();
+        double salary = Double.parseDouble(salaryString);
+        return new Employee(name, address, type, attribute, number,salary);
     }
     public void addEmployee(Employee employee, ArrayList<Employee> employeesList){
         employeesList.add(employee);
-        System.out.println(employeesList.size());
+        System.out.println("Employee List Size :" + employeesList.size());
     }
     public void verifyType(ArrayList<Employee> empl, ArrayList<Employee> hourlyEmplo,
                            ArrayList<Employee> salariedEmplo, ArrayList<Employee> commmiEmplo){
 
         for(Employee e: empl){
-            System.out.println(e.getName());
+//            System.out.println(e.getName());
             if(e.getType().equals("1")){
                 hourlyEmplo.add(e);
             }
@@ -54,6 +65,7 @@ public class Menu {
         System.out.print("_____________\n");
        String op  = input.nextLine();
        boolean flag = true;
+
        for(Employee e : empl){
            if(e.getNumber().equals(op)){
                empl.remove(e);
@@ -76,9 +88,32 @@ public class Menu {
        }
     }
     public void cardPoint(){
-        System.out.print("\nTime of Entry:");
-        String entryHour = input.nextLine();
-        System.out.print("\nTime of Exit:");
-        String exitHour = input.nextLine();
+        // Input
+        System.out.print("\nTime of Entry: ");
+        System.out.print("a. Type hour: ");
+        int hourEntry = validateTime(0,23);
+        System.out.print("b. Type minutes: ");
+        int minuteEntry = validateTime(0,59);
+        int entry = timeInMinutes(hourEntry, minuteEntry);
+        // ------------------------------------------------------
+        System.out.print("\nTime of Exit: ");
+        System.out.print("a. Type hour: ");
+        int hourExit = validateTime(0,23);
+        System.out.print("b. Type minutes: ");
+        int minuteExit = validateTime(0,59);
+        int exit = timeInMinutes(hourExit, minuteExit);
+        //
+    }
+    public int validateTime(int leftBound, int rightBound){
+        int value = -1;
+        while(!(value >= leftBound && value <= rightBound)){
+            System.out.printf("type a valid value -> (%d - %d):", leftBound, rightBound);
+            value = input.nextInt();
+            input.nextInt();
+        }
+      return value;
+    }
+    public int timeInMinutes(int hour, int minute){
+        return hour + minute;
     }
 }

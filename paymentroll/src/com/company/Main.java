@@ -23,6 +23,7 @@ public class Main {
             if(op == 1){ //Add Employee
                 number += 1;
                 Employee employee = menu.createEmployee(number); // Creating an Employee
+                System.out.println( employee.toString());
                 menu.addEmployee(employee,employeesList);
                 menu.verifyType(employeesList, hourlyEmployees,salariedEmployees, commissionedEmployees);
             }

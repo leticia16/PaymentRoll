@@ -3,8 +3,8 @@ import java.util.*;
 
 public class Hourly {
     private Employee employee;
-    private String entryHour;
-    private String exitHour;
+    private Double entryHour;
+    private Double exitHour;
 
 
 }
